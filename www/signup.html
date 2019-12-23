@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">    
+    <link rel="stylesheet" href="css/style.css">
+	 <script type="text/javascript" src="js/functions.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="back-link-box pl-1">
+                       
+                        <div class="back-link">
+                            <a href="javascript:void(0)" onclick="bakpage('index.html')">
+                                <img class="img-fluid" src="images/left.png" alt="">
+                            </a>
+                        </div>
+                        
+                        <div class="back-logo">
+                            <a href="#">
+                                <img class="img-fluid" src="images/logo-sign.png" alt="">
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="login-banner">
+		<div class="container-fluid">
+			<div class="row">
+			
+			    <div class="col-12 px-4">
+					<div class="login-title mt-1">
+						<h6>Register</h6>
+					</div>
+				</div>
+				
+				<div class="col-6">
+					<div class="sign-box" data-page="professional_signup_form.html">
+						<div class="sign-img" >
+						    <a href="javascript:void(0)">
+						        <img class="img-fluid" src="images/img.png" alt="">
+						    </a>
+						</div>
+						<p>PROFESSIONALS</p>
+					</div>
+				</div>
+				
+				<div class="col-6">
+					<div class="sign-box" data-page="ceprovider_signup_form.html">
+						<div class="sign-img">
+						    <a href="javascript:void(0)" >
+						        <img class="img-fluid" src="images/img-1.png" alt="">
+						    </a>
+						</div>
+						<p>CE PROVIDER</p>
+					</div>
+				</div>
+				
+				<div class="col-6">
+					<div class="sign-box" data-page="institutions_signup_form.html">
+						<div class="sign-img">
+						    <a href="javascript:void(0)" >
+						        <img class="img-fluid" src="images/img-2.png" alt="">
+						    </a>
+						</div>
+						<p>INSTITUTIONS</p>
+					</div>
+				</div>
+				
+				<div class="col-6">
+					<div class="sign-box" data-page="advertiser_signup_form.html">
+						<div class="sign-img">
+						    <a href="javascript:void(0)" >
+						        <img class="img-fluid" src="images/img-3.png" alt="">
+						    </a>
+						</div>
+						<p>ADVERTISER</p>
+					</div>
+				</div>
+				
+				<div class="col-12 mt-4">
+				    <div class="continue-btn" id="continuebtn">
+                        <button class="btn" disabled>CONTINUE</button>
+				    </div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	  
+	  
+     <script type="text/javascript" src="cordova.js"></script>        
+     <script src="js/jquery-1.11.2.min.js"></script>
+  
+    <script src="js/bootstrap.min.js"></script>
+    
+  <script>
+  jQuery('.sign-box').click(function(){
+  
+   jQuery('.sign-box').removeClass('active');   
+   jQuery(this).addClass('active'); 
+  
+   var pagename="'"+jQuery(this).attr('data-page')+"'";   
+   var continuebtnhtml='  <button class="btn" onclick="nextpage('+pagename+')" >CONTINUE</button>';
+   jQuery('#continuebtn').html(continuebtnhtml);
+  
+  });
+  </script>
+
+</body>
+
+</html>

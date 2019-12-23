@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">    
+    <link rel="stylesheet" href="css/style.css"> 
+    <script type="text/javascript" src="js/functions.js"></script>	
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    
+</head>
+<body onload="setvalue()">
+
+    <script>	
+	function setvalue()
+	{ 
+		var loggedIn=window.localStorage.getItem("loggedIn");
+       	
+		
+	  if(window.localStorage.getItem("successmsg"))
+	  {
+	    jQuery("#msgstatus").addClass("alert-success").fadeIn(10).text(window.localStorage.getItem("successmsg"));
+		window.localStorage.removeItem('successmsg');
+	  }
+	  
+	}
+	function userlogin()
+            {	
+  	          var email=jQuery("#email").val();
+		      var password=jQuery("#pass").val();
+		      var flag=0;
+			  if(email=='')
+				{
+				 jQuery(".email-error").show();
+				 flag=1;
+				}			
+			  if(password=='')
+			    {
+			     jQuery(".pass-error").show();
+			     flag=1;
+			   }			
+			  if(flag==1)
+				{
+				  return false;
+				}
+			else
+			{		
+                jQuery('.mask').show();
+				jQuery('.loading').show();
+				
+				jQuery.ajax({					  
+								type:'POST', 
+                                datatype: 'JSON',								
+								url:base_url+"/users/login",
+								data: JSON.stringify({email: email,password: password}),								
+								success:function(data)
+									 {	 
+									     jQuery('.mask').hide();
+				                         jQuery('.loading').hide();
+										 console.log(data.success);
+                                        if(data.error=='1')
+                                           {
+										     jQuery("#msgstatus").addClass("alert-danger").fadeIn(10).text(data.msg);
+										   }else
+                                            {
+											   //window.localStorage.setItem("loggedIn", 1);
+												// window.localStorage.setItem('login_user_id', data.response_data.id);
+												// window.localStorage.setItem('login_user_email', data.response_data.user_email); 
+												// window.localStorage.setItem('login_user_name', data.response_data.user_nicename); 
+												 window.plugins.nativepagetransitions.flip({
+														 'backgroundColor' : "#BBBBBB",
+														 'direction': 'right',										
+														 "href" : "dhasboard.html"
+														 });
+											} 										   
+										 
+									}
+							   });	
+			   
+			     }		 
+	 
+	    }
+	   
+	</script>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="back-link-box pl-2">
+                       
+                        <div class="back-link">
+                            <a onclick="bakpage('index.html')" href="javascript:void(0)">
+                                <img class="img-fluid" src="images/left.png" alt="">
+                            </a>
+                        </div>
+                        
+                        <div class="back-logo">
+                            <a nclick="bakpage('index.html')">
+                                <img class="img-fluid" src="images/logo-login.png" alt="">
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero-login-banner">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 px-0">
+                    <div class="hero-login-box">
+                        <img class="img-fluid" src="images/login-banner.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="login-banner">
+		<div class="container-fluid">
+		
+			<div class="row">
+			
+			    <div class="col-12 px-4">
+					<div class="login-title">
+						<h6>LOG IN</h6>
+					</div>
+				</div>
+				
+				<div class="col-12 px-4" id="msgstatus" style="font-size:15px;"></div>
+				
+				<div class="col-12 px-4">
+					<div class="login-text">
+						<label for="email">Email ID</label>
+						<input id="email" type="email" placeholder="webpanelsolutions@gmail.com">
+					</div>
+					<div class="error email-error" style="color:red;display:none">Please enter email.</div>
+				</div>
+				
+				<div class="col-12 px-4">
+					<div class="login-text mt-3">
+						<label for="pass">PASSWORD</label>
+						<input id="pass" type="password" placeholder="********">
+					</div>
+					<div class="error pass-error" style="color:red;display:none;">Please enter password.</div>
+				</div>
+				
+				<div class="col-12 px-4">
+					<div class="forget-link text-right">
+						<a onclick="nextpage('forgot.html')" href="javascript:void(0)" class="after-link">Forget Password</a>
+					</div>
+				</div>
+				
+				<div class="col-12 px-4">
+				    <div class="link-para">
+				        <p>By tapping Continue, I agree to Indiecube <a href="#" class="after-link">Terms of service</a> and <a href="#" class="after-link"> Privacy Policy.</a></p>
+				    </div>
+				</div>
+				
+				<div class="col-12 px-4">
+				    <div class="continue-btn">
+                        <button class="btn" onClick="userlogin()">CONTINUE</button>
+				    </div>
+				</div>
+				
+				<div class="col-12 px-4">
+				    <div class="or-box">
+                        <span>or</span>
+				    </div>
+				</div>
+				
+				<div class="col-12 px-4">
+                    <a href="#" class="with-link google-link">
+                        <img class="img-fluid" src="images/google.png" alt="">Login with Google
+                    </a>
+                    <a href="#" class="with-link">
+                        <img class="img-fluid" src="images/facebook.png" alt="">Login with Facebook
+                    </a>
+				</div>
+				
+			</div>
+		</div>
+	</section>	
+    <div class="mask" style="display:none;"></div>	
+	<div class="loading" style="position: absolute;top: 50%;width: 100px;left: 34%;z-index: 9999;display:none;"><img class="img-fluid" src="images/loading.gif" alt=""></div>
+	
+	 <script type="text/javascript" src="cordova.js"></script>        
+     <script src="js/jquery-1.11.2.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>    
+   <style>
+   .mask{ position:fixed; background:#000; left:0px; top:0px; right:0px; bottom:0px; opacity:0.6; z-index:99; }
+   </style>
+</body>
+
+</html>

@@ -866,16 +866,11 @@ input:focus {
 
         /* otp-css */
 
-.otp-dashed {
-    display: inline-block;
-    width: 20px;
-    height: 2px;
-    background: #7d7d7d;
-    margin: 0 3px;
-}
-
-.otp-text {
-    text-align: center;
+.opt-box input {
+	font-size: 15px;
+	letter-spacing: 2px;
+	text-align: center;
+	padding-top: 8px;
 }
 
         /* otp-css */
@@ -1056,8 +1051,6 @@ tr td:nth-child(3) {
     color: #fff;
     margin-top: 10px;
 }
-
-
 
         /* Profile css */
 

@@ -1,4 +1,4 @@
-var base_url='https://ceonpoint.com/api';
+var base_url='https://wps-dev.com/dev/securityguard/public/api';
 
  function flippageup(page) {
 

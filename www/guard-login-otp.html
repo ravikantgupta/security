@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ASQARI Guard Login OTP</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/functions.js"></script>	
+</head>
+<body>
+	<script>
+	
+	function matchotp()
+            {	
+  	          var otp=jQuery("#otp").val();
+		     
+		      var flag=0;
+			  if(otp=='')
+				{
+				jQuery(".otp-error").html('Please enter otp.');
+				 jQuery(".otp-error").show();
+				 flag=1;
+				}			
+			  			   
+			  if(flag==1)
+				{
+				  setTimeout(function(){ jQuery(".error").hide(); }, 4000);
+				  return false;
+				}
+				
+				
+			else
+			{		
+                jQuery('.mask').show();
+				jQuery('.loading').show();
+				 var userdata=JSON.parse(window.localStorage.getItem("userdata"));
+				jQuery.ajax({					  
+								type:'POST', 
+                                dataType: 'JSON',								
+								url:base_url+"/otp",
+								data: JSON.stringify({userid: userdata.id, otp:otp}),								
+								success:function(data)
+									 {	 
+									     jQuery('.mask').hide();
+				                         jQuery('.loading').hide();
+									
+                                        if(data.success=='true')
+                                           {
+										     window.localStorage.setItem('successmsg', data.msg);
+												 window.plugins.nativepagetransitions.flip({
+														 'backgroundColor' : "#BBBBBB",
+														 'direction': 'right',										
+														 "href" : "welcome.html"
+														 });
+										   }else
+                                            {
+											 jQuery(".otp-error").html('Please enter correct otp.');
+											 jQuery(".otp-error").show();
+											  setTimeout(function(){ jQuery(".error").hide(); }, 4000);
+											} 										   
+										 
+									}
+							   });	
+			   
+			     }		 
+	 
+	    }
+	   
+	</script>
+
+	<section class="logo-banner">
+		<div class="login-logo">
+			<img class="img-fluid" src="images/logo-app1.png" alt="">
+		</div>
+    </section>
+    
+    <section class="title-banner">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="title opt">
+						<p>Enter OTP</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="login-banner px-2">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="opt-box">
+						<input id="otp" id="otp" type="text" placeholder="-  -  -  -  -">
+					</div>
+					<div class="error otp-error" style="color:red;display:none;">Please enter otp.</div>
+				</div>
+				<div class="col-12">
+					<div class="login-box visitors-btn admin-btn">
+						<button onclick="matchotp()" class="login-btn">SUBMIT</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <div class="mask" style="display:none;"></div>	
+	<div class="loading" style="position: absolute;top: 50%;width: 100px;left: 34%;z-index: 9999;display:none;"><img class="img-fluid" src="images/loading.gif" alt=""></div>
+	
+	 <script type="text/javascript" src="cordova.js"></script>        
+     <script src="js/jquery-3.4.0.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>    
+   <style>
+   .mask{ position:fixed; background:#000; left:0px; top:0px; right:0px; bottom:0px; opacity:0.6; z-index:99; }
+   </style>
+	
+</body>
+</html>

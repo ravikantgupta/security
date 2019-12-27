@@ -27,7 +27,7 @@
 						type:'POST',  
 						url:base_url+"/security/dashboad",																
 						dataType: 'json',
-						data: {guard_id: 40},
+						data: {guard_id: userdata.id},
 						success:function(data)
 							 {
 							 
@@ -39,20 +39,18 @@
 										
 										  
 										  visitorhtml+='<tr>\
-										           <td >'+data.success.data[i].name+'</td>\
-													<td >\
-														<span class="green">'+data.success.data[i].mobile+'</span>\
-													</td>\
-													<td>\
-                                        <span class="red">'+data.success.data[i].flat+'</span>\
-                                    </td>\
-                                    <td>\
-                                        <span class="green">'+data.success.data[i].meet_person+'</span>\
-                                    </td>';
-                                   visitorhtml+=' <td>\
-                                        <span class="">Success</span>\
-                                    </td>	\
-                                </tr>'
+										  <td >\<span >'+data.success.data[i].mobile+'</span></td>\
+										  <td><span class="green">'+data.success.data[i].entry+'</span></td>\
+                                          <td><span class="red">'+data.success.data[i].exit+'</span></td>';
+									if(data.success.data[i].status=='1')
+                                     {									
+                                      visitorhtml+='<td><span class="green">Success</span></td>';
+									 }else
+									 {
+									  visitorhtml+='<td><span class="yellow">Pending</span></td>';
+									 }
+									 
+                                     visitorhtml+='</tr>'
 										  
 										}                                 
 									 jQuery('#vistorlistbody').html(visitorhtml);
@@ -107,11 +105,12 @@
                 </div>
             </div>
             <ul class="navbar-nav">
+			
                 <li class="nav-item">
                     <span>
                         <img src="images/visitors.png" alt="">
                     </span>
-                    <a class="nav-link"onclick="nextpage('visitors-list.html')" href="javascript:void(0)">Visitors List</a>
+                    <a class="nav-link"onclick="nextpage('dashboad.html')" href="javascript:void(0)">Dashboard</a>
                 </li>
 
                 <li class="nav-item">
@@ -133,6 +132,10 @@
                         <img src="images/lock.png" alt="">
                     </span>
                     <a class="nav-link change-link" href="#">Change Password</a>
+                </li>
+				
+				<li class="nav-item pl-5">
+					<button class="btn sign-btn" onclick="logout()">SIGN OUT</button>
                 </li>
 
             </ul>
@@ -158,11 +161,11 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th class="green">Mobile No.</th>
-                                <th class="red">Flat</th>
-								<th class="green">Meet Person.</th>
+                          
+							<tr>
+                                <th>Mobile No.</th>
+                                <th class="green">Time In</th>
+                                <th class="red">Time Out</th>
                                 <th>Status</th>
                             </tr>
                             </thead>

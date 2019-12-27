@@ -154,56 +154,7 @@ function openNav() {
 function logout() {
 
   window.localStorage.removeItem("loggedIn");
-  window.localStorage.removeItem("login_user_id");  
-  window.localStorage.removeItem("login_user_email");  
-  window.localStorage.removeItem("login_user_name");  
+  window.localStorage.removeItem("userdata");   
   nextpage('login.html');
 
-}
-
-function getCartDetail()
-{
-	var login_user_id= window.localStorage.getItem("login_user_id");
-    
-	  if(login_user_id)
-	  {
-		  
-		  $.ajax({	    	
-				   type:'POST',						
-					url:"https://purecbdgroup.com/api.php/cart_total_detail",
-					data:JSON.stringify({'user_id':login_user_id}),						
-					contentType: 'application/json',
-					success:function(data)
-					{		  
-					 				  
-					  var carthtml='';						
-						if(data.status)
-						{
-						  jQuery('.zero').html(data.total_cart_item);
-						  
-						if (jQuery('.pricehtml').length) {
-                            jQuery('.pricehtml').html(data.currency+parseFloat(data.total_price).toFixed(2));
-						  }	
-						  
-						  if (jQuery('.totitem').length) {
-                            jQuery('.totitem').html(data.total_cart_item);
-						  }
-
-                          if (jQuery('.taxhtml').length) {
-                            jQuery('.taxhtml').html(data.currency+parseFloat(data.total_tax).toFixed(2));
-						  }	
-						  
-						  if (jQuery('.payablepricehtml').length) {
-                            jQuery('.payablepricehtml').html(data.currency+parseFloat(data.payableamount).toFixed(2));
-						  }	
-						  
-						}				
-					  
-					},
-					error: function(e) {
-						alert('Error: ' + e.message);
-					}
-			});	
-		  
-	  }
 }

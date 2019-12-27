@@ -73,7 +73,7 @@ a:hover {
 
 
 
-/*CSS Modal Start*/
+		/*CSS Modal Start*/
 
 #exampleModal{
     overflow: hidden;
@@ -166,6 +166,7 @@ span.line-one {
 
 
         /* Header Css Start */
+
 header {
     background-color: #f0f0f0;
     padding: 10px 0px;
@@ -207,7 +208,7 @@ ul.navbar-nav {
 }
 
 .nav-item img {
-    width: 10%;
+    width: 25px;
 }
 
 .navbar-toggler-icon {
@@ -225,14 +226,15 @@ ul.navbar-nav {
 .navbar-dark .navbar-toggler {
     padding: 2px 7px;
     border: none;
+	display: block;
 }
 
 a.nav-link.change-link {
     vertical-align: sub;
 }
 
-a.nav-link {
-    margin-left: 10px;
+a.nav-link span {
+    margin-right: 10px;
 }
 
 .navbar-dark .navbar-toggler:focus {
@@ -249,7 +251,7 @@ a.nav-link {
 }
 
 .btn-box a img {
-    width: 15%;
+    width: 22px;
 }
 
 .sign-btn {
@@ -465,7 +467,8 @@ input:focus {
 
 .login-box {
     margin: 0 auto;
-    width: 110px;
+/*    width: 110px;*/
+	text-align: center;
     margin-top: 50px;
     margin-bottom: 35px;
 }
@@ -477,19 +480,6 @@ input:focus {
     margin-top: 20px;
 }
 
-.login-box.visitors-btn {
-    margin-top: 45px;
-    width: 100px;
-}
-
-.login-box.visitors-btn .login-btn {
-	padding: 5px 30px;
-}
-
-.login-box.admin-btn .login-btn {
-	padding: 5px 22px;
-}
-
 .login-btn {
 	border: 1px solid #ffa300;
 	background: #ffa300;
@@ -499,399 +489,7 @@ input:focus {
 	font-size: 13px;
 	color: #fff;
 }
-
-.login-box.admin-btn.visit-btn {
-    margin-top: 30px;
-    width: 92px;
-}
-
-.login-box.visitors-btn.admin-btn {
-    margin-top: 45px;
-    width: 100px;
-}
-
-.login-text.visitors-text i {
-    font-size: 22px;
-	vertical-align: middle;
-}
-
-.login-text.visitors-text label {
-    color: #c8c8c8;
-    font-weight: 300;
-}
-
-.title-banner {
-    margin: 0;
-}
-
-.title.opt {
-    font-size: 15px;
-}
-
-.title {
-	margin: 10px 0px;
-	text-align: center;
-	color: #c8c8c8;
-}
-
-.title h2 {
-    font-size: 25px;
-    font-weight: 400;
-}
-
-.login-text.vehicle-text label {
-	color: #f6f6f6;
-}
-
-.login-box.vehicle-btn {
-	width: 95px;
-}
-
-.login-box.visit-btn {
-	margin-top: 30px;
-	width: 92px;
-}
-
-.login-text.visit-text label {
-	font-size: 11px;
-}
-
-.title.para {
-    padding: 0 5px;
-    font-size: 18px;
-    line-height: 25px;
-}
-
-.main-admin{
-	width: 100%;
-	display: flex;
-}
-
-.login-box.admin-btn{
-	width: 100%;
-	margin-top: 35px;
-}
-
-.title h5 {
-	font-size: 22px;
-}
-
-.check-banner {
-	margin-top: 30px;
-}
-
-.check-box {
-	text-align: center;
-}
-
-.check-box .round {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 50px;
-	height: 50px;
-	margin: 0 auto;
-	background: #fff;
-	border-radius: 50%;
-}
-
-.check-box .round img {
-	width: 60%;
-}
-
-.check-box .round::after {
-/*	content: "\f00c";*/
-    font-family: 'fontawesome';
-    margin-right: 0;
-    color: #36790a;
-    font-weight: 100;
-    font-size: 40px;
-    text-align: center;
-    display: block;
-}
-
-.span-text {
-    display: block;
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-.span-text.success{
-    margin-top: 25px;
-}	
-
-.check-box.pass-box p {
-    font-size: 17px;
-    margin-bottom: 0;
-    letter-spacing: 1px;
-    line-height: 20px;
-}
-
-.pass-para {
-	margin-top: 22px;
-}
-
-.login-box.pass-btn {
-	margin-top: 80px;
-	width: 140px;
-}
-
-.login-box.pass-btn .login-btn {
-    padding: 5px 21px;
-}
-
-.check-box.scan-box p{
-    font-size: 16px;
-    margin-bottom: 0;
-    letter-spacing: 1px;
-    line-height: 20px;
-}
-
-.scan-para {
-	margin-top: 22px;
-}
-
-.login-box.scan-btn {
-	margin-top: 30px;
-	width: 95px;
-}
-
-.check-box .close-box{
-	display: flex;
-	width: 50px;
-	height: 50px;
-	margin: 0 auto;
-	background: #f63f25;
-	border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-}
-
-.close-box img {
-    width: 40%;
-}
-
-.check-box .close-box::after{
-/*	content: "\f00d";*/
-    font-family: 'fontawesome';
-    margin-right: 0;
-    color: #fff;
-    font-weight: 100;
-    font-size: 40px;
-    text-align: center;
-    display: block;
-}
-
-.check-box.sorry-box p {
-    font-size: 15px;
-    margin-bottom: 0;
-    letter-spacing: 1px;
-    line-height: 27px;
-}
-
-.sorry-para {
-	margin-top: 22px;
-}
-
-.scan-img{
-	margin: 0 auto;
-	width: 190px;
-    margin-bottom: 20px;
-    margin-top: -20px;
-}
-
-.spinner-border {
-    display: inline-block;
-    width: 70px;
-    height: 70px;
-    vertical-align: inherit;
-    animation: spinner-border .99s linear infinite;
-    border: 4px solid #fff;
-    border-right-color: transparent;
-    border-radius: 50%;
-}
-
-.check-box.wait-box p {
-    font-size: 14px;
-    margin-bottom: 0;
-    letter-spacing: 0.5px;
-    line-height: 20px;
-}
-
-.check-box.wait-box .pass-para {
-    margin-top: 30px;
-}
-
-.title.yesno {
-    font-size: 15px;
-    padding: 0 40px;
-    color: #fff;
-}
-
-.login-banner.input-banner{
-	margin-top: 20px;
-}
-
-.input-box {
-	text-align: center;
-}
-
-/* The container */
-.label {
-    display: block;
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-/* Hide the browser's default radio button */
-.label input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-    position: absolute;
-    top: 5px;
-    left: -45px;
-    right: 0;
-    margin: 0 auto;
-    height: 20px;
-    width: 20px;
-    background-color: transparent;
-    border: 2px solid #fff;
-    border-radius: 50%;
-}
-
-/* When the radio button is checked, add a blue background */
-.label input:checked ~ .checkmark {
-  background-color: transparent;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark::after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.checkmark::before {
-  content: "";
-  position: absolute;
-  display: block;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.label input:checked ~ .checkmark::after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.label .checkmark::after {
-    top: 3px;
-    left: 0px;
-    right: 0;
-    margin: 0 auto;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ffa300;
-}
-
-.label .checkmark::before {
-    top: 3px;
-    left: 0px;
-    right: 0;
-    margin: 0 auto;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #fff;
-}
-
-.login-box.yesno-btn {
-    margin-top: 45px;
-    width: 95px;
-}
-
-.login-text .input-select{
-	display: flex;
-    align-items: center;
-}
-
-.sup{
-    top: -2px;
-}
-
-.city {
-    background: transparent;
-    color: #fff;
-    border: none;
-    width: 100%;
-    padding-right: 20px;
-}
-
-.city:focus {
-	outline: 0px;
-}
-.input-select::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 8px solid #fff;
-    top: 5px;
-    right: 3px;
-    z-index: -1;
-    border-radius: 2px;
-}
-
-.city option {
-    background: #fff;
-    color: #000;
-    border: 1px solid #fff;
-}
-
-.city option:focus {
-    outline: 0;
-}
-
-.login-text .input-select i{
-	margin-right: 1px;
-}
-
-        /* otp-css */
-
-.opt-box input {
-	font-size: 15px;
-	letter-spacing: 2px;
-	text-align: center;
-	padding-top: 8px;
-}
-
-        /* otp-css */
-
-
-        /* tabel css */
-
-.table-banner {
-    margin-top: -25px;
-}
-
-.table-link {
-    width: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.table-link img {
-    width: 100%;
-}
+		/* Dasbord-css Start */
 
 .table-para {
     width: 100%;
@@ -903,6 +501,14 @@ input:focus {
     margin-bottom: -2px;
     padding-right: 25px;
     font-weight: 600;
+}
+
+.table-para p {
+    margin-bottom: 0;
+}
+
+.table-banner {
+    margin-top: -25px;
 }
 
 .table-title {
@@ -918,12 +524,6 @@ input:focus {
 .table {
     color: #fff;
     margin-bottom: 0px;
-}
-
-.table tr td {
-    padding: 5px 0px;
-    text-align: center;
-    font-size: 11px;
 }
 
 .table thead th {
@@ -948,6 +548,16 @@ tr th:nth-child(3) {
     border-right: 1px solid #d3d3d3;
 }
 
+tr th:last-child {
+    border-right: none;
+}
+
+.table tr td {
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 11px;
+}
+
 tr td:first-child {
     border-right: 1px solid #d3d3d3;
 }
@@ -959,64 +569,60 @@ tr td:nth-child(2) {
 tr td:nth-child(3) {
     border-right: 1px solid #d3d3d3;
 }
-        /* tabel css */
 
-        /* Profile css */
-
-.profile-link {
-    display: flex;
-    align-items: center;
-    padding-top: 15px;
-    padding-left: 5px;
+tr td:last-child {
+    border-right: none;
 }
 
-.profile-close {
-    width: 26px;
-    margin-right: 10px;
+		/* Dasbord-css End */
+
+		/* Visitor-css Start */
+
+.login-text.visitors-text label {
+    color: #c8c8c8;
+    font-weight: 300;
 }
 
-.profile-box {
-    margin: 0 auto;
-    text-align: center;
-    width: 140px;
+.login-text.visitors-text i {
+    font-size: 22px;
+    vertical-align: middle;
+}
+		/* Visitor-css End */
+
+		/* Pleasewait-css Start */
+
+.check-banner {
+    margin-top: 30px;
 }
 
-.profile-img {
+.spinner-border {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    vertical-align: inherit;
+    animation: spinner-border .99s linear infinite;
+    border: 4px solid #fff;
+    border-right-color: transparent;
     border-radius: 50%;
-    border: 2px solid #fff;
-    overflow: hidden;
-    width: 65px;
-    height: 65px;
-    margin: 0 auto;
-    position: relative;
 }
 
-.profile-camera-box {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.73);
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 100%;
+.wait-box .pass-para {
+    margin-top: 30px;
 }
 
-.profile-camera {
-    width: 23px;
-    margin: 0 auto;
-}
-
-.profile-camera img {
-    width: 100%;
-}
-
-.profile-text {
+.wait-box p {
     font-size: 14px;
-    margin-top: 10px;
+    margin-bottom: 0;
+    letter-spacing: 0.5px;
+    line-height: 20px;
 }
+
+		/* Pleasewait-css End */
+
+		/* visitor-From-css Start */
 
 .form-box {
-    background: #fff;
+/*    background: #fff;*/
     padding: 15px 0;
 }
 
@@ -1025,64 +631,75 @@ tr td:nth-child(3) {
     align-items: center;
     padding-right: 0;
     margin: 12px 0px;
+	background: transparent;
 }
 
 .form-box input {
     display: inline-block;
     width: 100%;
     border: none;
-    padding: 0px 10px 4px;
+    padding: 0px 10px 0px;
     font-size: 12px;
     margin-top: 0px;
-    padding-bottom: 0px;
     background: transparent;
-    color: #5d3030;
+    color: #fff;
 }
 
 .form-control .fa-mobile {
     font-size: 22px;
-    margin-left: 3px;;
+    margin-left: 3px;
 }
 
-.profile-btn {
-    display: block;
-    width: 100%;
-    background: #000;
+.upload-box .form-control {
     color: #fff;
-    margin-top: 10px;
+	color: #8e9296;
+	font-size: 12px;
 }
 
-        /* Profile css */
-
-        /* upload css */
-
-.upload-box {
-    margin: 0 auto;
-    width: 180px;
-    text-align: center;
-    border: 1px solid;
-    padding: 30px 0px;
-    margin-bottom: 30px;
-    color: #fff;
-    display: block;
-}
-
-.upload-img {
+.upload-img .form-control {
     width: 35px;
     margin: 0 auto;
+}
+
+.form-control .upload-title {
+	padding: 0px 10px 4px;
 }
 
 .upload-img img {
     width: 100%;
 }
 
-.upload-title {
-    font-size: 14px;
-    margin-top: 15px;
-}
-
 .upload-title p {
     margin-bottom: 0;
 }
 
-        /* upload css */
+		/* visitor-From-css End */
+
+		/* visitor-From-css Start */
+
+.check-box .round {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.check-box .round img {
+    width: 60%;
+}
+
+.scan-para {
+    margin-top: 22px;
+}
+
+.check-box p {
+    font-size: 16px;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+    line-height: 20px;
+}
+		/* visitor-From-css End */

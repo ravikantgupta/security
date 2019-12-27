@@ -185,28 +185,27 @@
 					 jQuery('.loading').show();
 					 var userdata=JSON.parse(window.localStorage.getItem("userdata"));
 					 var formData = new FormData();
-					 formData.append('user_id', userdata.id); 
+					 formData.append('guard_id', userdata.id); 
 					 formData.append('vistor_id', $('#vistor_id').val());
 					 formData.append('name', $('#name').val());
 					 formData.append('email', $('#email').val());		
 					 formData.append('mobile', $('#mobile').val());	
-                     formData.append('flat_number', $('#flat_number').val());	
-					 formData.append('visited_person', $('#visited_person').val()); 
-					 formData.append('vehicle_reg', $('#vehicle_reg').val());						 
+                     formData.append('flat', $('#flat_number').val());	
+					 formData.append('meet_person', $('#visited_person').val()); 
+					 formData.append('vehicle_no', $('#vehicle_reg').val());						 
 					 formData.append('image', $('input[type=file]')[0].files[0]); 
 					
 							jQuery.ajax({					  
 								type:'POST', 
 								dataType: 'JSON',                   			
-								url:base_url+"/users/profile_2",
+								url:base_url+"/security/visitor-entry",
 								data: formData,	
 								contentType: false,
 								processData: false,
 								success:function(data)
 									 {	 
 										 jQuery('.mask').hide();
-										 jQuery('.loading').hide();
-									
+										 jQuery('.loading').hide();									
 	                                     nextpage('registrationsuccess.html');																		   
 										 
 									}

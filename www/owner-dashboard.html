@@ -25,9 +25,9 @@
 
         jQuery.ajax({					  
 						type:'POST',  
-						url:base_url+"/security/dashboad",																
+						url:base_url+"/security/flat-visitor-list",																
 						dataType: 'json',
-						data: {guard_id: userdata.id},
+						data: {id: userdata.id},
 						success:function(data)
 							 {
 							 
@@ -39,8 +39,8 @@
 										  
 										  visitorhtml+='<tr>\
 										  <td >\<span >'+data.success.data[i].mobile+'</span></td>\
-										  <td><span class="green">'+data.success.data[i].entry+'</span></td>\
-                                          <td><span class="red">'+data.success.data[i].exit+'</span></td>';
+										  <td><span >'+data.success.data[i].entry_date+'</span></td>\
+                                          <td><span class="green">'+data.success.data[i].entry_time+'</span></td>';
 									if(data.success.data[i].status=='1')
                                      {									
                                       visitorhtml+='<td><span class="green">Success</span></td>';
@@ -168,8 +168,8 @@
                           
 							<tr>
                                 <th>Mobile No.</th>
-                                <th class="green">Time In</th>
-                                <th class="red">Time Out</th>
+                                <th class="">Date</th>
+                                <th class="red">Time In</th>
                                 <th>Status</th>
                             </tr>
                             </thead>

@@ -24,7 +24,64 @@
 		var loggedIn=window.localStorage.getItem("loggedIn");       	
 		var userdata=JSON.parse(window.localStorage.getItem("userdata"));		
         jQuery('.usename').html(userdata.name);
+		
+		  jQuery.ajax({					  
+						type:'POST',  
+						url:base_url+"/security/flat-visitor-list",																
+						dataType: 'json',
+						data: {id: userdata.id},
+						success:function(data)
+							 {
+							 
+							   var visitorhtml='';
+							   if(data.success.status=='1')
+							   {                                 
+                                  
+                                   for (i in data.success.data) {						
+										  
+										  if(data.success.data[i].flat_response=='1')
+                                        {	
+										  visitorhtml+='<tr>\
+										  <td class="text-left pl-2">\<span >'+data.success.data[i].name+'</span><br><span>'+data.success.data[i].mobile+'</span></td>\
+										  <td>\
+										     <button class="btn bg-success" onclick="setVisitSatus('+data.success.data[i].id+',2)">Accept</button>\
+										    <button class="btn bg-danger" onclick="setVisitSatus('+data.success.data[i].id+',3)">Reject</button>\
+                                           </td>';
+									
+                                     visitorhtml+='</tr>'
+										  
+										} 
+									}	
+										
+									 jQuery('#vistorlistbody').html(visitorhtml);
+                                   										
+							   }    
+
+							}
+			           });
+		
     }
+ function setVisitSatus(visitor_id,flat_response)
+	{
+     	 
+	 jQuery('.mask').show();
+	 jQuery('.loading').show();				
+				jQuery.ajax({					  
+							type:'POST', 
+							datatype: 'JSON',								
+							url:base_url+"/security/flat-Response",
+							data: {vistor_id: visitor_id,flat_response: flat_response},								
+							success:function(data)
+								 {	 
+									 jQuery('.mask').hide();
+									 jQuery('.loading').hide();
+									
+								       setvalue();							   
+										 
+									}
+							   });
+	  
+	} 
 </script>
 	<header>
         <div class="container-fluid">
@@ -136,104 +193,8 @@
                                 <th>Status</th>
                             </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-										<button class="btn bg-success">Accept</button>
-										<button class="btn bg-danger">Reject</button>
-                                    </td>	
-                                </tr>
-                                
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-                                        <span class="red">Rejected</span>
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-                                        <span class="green">Accepted</span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-                                        <span class="red">Rejected</span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-                                        <span class="green">Accepted</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-                                        <span class="red">Rejected</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-                                        <span class="green">Accepted</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-                                        <span class="red">Rejected</span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-                                        <span class="green">Accepted</span>
-                                    </td>	
-                                </tr>
-                                
-                                <tr>
-                                    <td class="text-left pl-2">
-                                        <span>Flat Owner</span><br>
-                                        <span>+91-888-888-8888</span>
-                                    </td>
-                                    <td class="accept-btn">
-                                        <span class="red">Rejected</span>
-                                    </td>
-                                </tr>
+                            <tbody id="vistorlistbody">
+                               
                             </tbody>
                         </table>
                     </div>

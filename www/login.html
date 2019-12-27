@@ -68,8 +68,16 @@
                                         if(data.success.status=='1')
                                            {
 										       window.localStorage.setItem("loggedIn", 1);
-											   window.localStorage.setItem('userdata',  JSON.stringify(data.success));											   
-											   nextpage('dashboard.html');
+											   window.localStorage.setItem('userdata',  JSON.stringify(data.success));
+
+											   if(data.success.role=='3')
+											   {
+											     nextpage('dashboard.html');
+											   }											   
+											   if(data.success.role=='5')
+											   {
+											     nextpage('owner-dashboard.html');
+											   }
 										     
 										   }else
                                             {
@@ -119,7 +127,7 @@
 						<button onclick="userlogin()" class="login-btn">LOGIN</button>
 					</div>
 				</div>
-				<div class="col-12">
+				<div class="col-12" style="display:none;">
 					<div class="login-link">
 						<p>
 							Dont't have an Account?

@@ -16,8 +16,42 @@
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/functions.js"></script>
 </head>
-<body>
+<body onload="setvalue()">
 	<script>
+	function setvalue()
+	{ 
+		var loggedIn=window.localStorage.getItem("loggedIn");       	
+		var userdata=JSON.parse(window.localStorage.getItem("userdata"));		
+        jQuery('.usename').html(userdata.name);
+
+        jQuery.ajax({					  
+						type:'POST',  
+						url:base_url+"/security/get-flatlist",																
+						dataType: 'json',
+						data: {id: userdata.id},
+						success:function(data)
+							 {
+							   
+								
+							   var flathtmlhtml='<option value="">Select</option>';
+							  // if(data.success.status=='1')
+							  // {                                 
+                                  
+                                   for (i in data.success.flatlist) {								
+										  
+										  flathtmlhtml+='<option value="'+data.success.flatlist[i].id+'">'+data.success.flatlist[i].name+'</option>';										 
+										  
+										}                      
+									
+                                   										
+							  // }
+
+                                jQuery('#flat_number').html(flathtmlhtml);							   
+
+							}
+			           });
+         		
+     }
 	 function getvisitorinfo()
             {	
   	          var mobileno=jQuery("#mobileno").val();
@@ -176,7 +210,7 @@
 			else
 			{
 		     jQuery('.'+hidescreen).hide();
-		     jQuery('.'+showscreen).show(1000);
+		     jQuery('.'+showscreen).show();
 			 }
 		}
 	function addVisitor()
@@ -193,7 +227,7 @@
                      formData.append('flat', $('#flat_number').val());	
 					 formData.append('meet_person', $('#visited_person').val()); 
 					 formData.append('vehicle_no', $('#vehicle_reg').val());						 
-					 formData.append('image', $('input[type=file]')[0].files[0]); 
+					 formData.append('image', $('input[type=file]')[0].files[0]);
 					
 							jQuery.ajax({					  
 								type:'POST', 
@@ -204,9 +238,55 @@
 								processData: false,
 								success:function(data)
 									 {	 
+									 
+									   if(data.success.data.status=='1')
+									   {
+										 jQuery('.waitingresponse').html(data.success.data.massege);
+										 jQuery('.loading').hide();	
+                                         jQuery('.waitingresponse').show();										 
+	                                   
+									   
+                                         var visitor_id=data.success.data.visitor_id;
+                                        var myVar = setInterval(function(){ checkreponse(visitor_id) }, 3000);
+
+                                         function checkreponse(visitor_id)
+										 {									    
+											 
+											  jQuery.ajax({					  
+													type:'POST', 
+													datatype: 'JSON',								
+													url:base_url+"/security/get-response",
+													data: {vistor_id: visitor_id},								
+													success:function(data)
+														 {
+														      
+														     if(data.success.flat_response=='2')
+									                            {
+																   jQuery('.loading').hide();	
+                                                                     jQuery('.waitingresponse').hide();
+																 	 nextpage('registrationsuccess.html');
+                                        																	 
+																}																
+																if(data.success.flat_response=='3')
+																{
+																  jQuery('.loading').hide();	
+                                                                  jQuery('.waitingresponse').hide();
+																   nextpage('registrationcancel.html');	
+																} 
+														     
+														 }
+											  });
+											 
+										 }
+										 
+										 
+										}else
+                                        {
+										
 										 jQuery('.mask').hide();
-										 jQuery('.loading').hide();									
-	                                     nextpage('registrationsuccess.html');																		   
+										 jQuery('.loading').hide();											 
+	                                     nextpage('registrationsuccess.html');	
+										}										
 										 
 									}
 							   });
@@ -471,8 +551,8 @@
 				<div class="col-12">
 					<div class="login-text visit-text">
 						<label for="Reg" class="inputup">
-						<i class="lnr lnr-apartment"></i>Flat Numaber</label>
-						<input id="flat_number" name="flat_number" type="text">
+						<i class="lnr lnr-apartment"></i>Flat Number</label>
+						<select id="flat_number" class="form-control" name="flat_number"></select>
 					</div>
 					<div class="error flat_number-error" style="color:red;display:none;">Please select Person to be flat numaber.</div>
 				</div>
@@ -535,8 +615,12 @@
 </section>	
 
 <div class="mask" style="display:none;"></div>	
-	<div class="loading" style="position: absolute;top: 50%;width: 100px;left: 34%;z-index: 9999;display:none;"><img class="img-fluid" src="images/loading.gif" alt=""></div>
-	
+	<div class="loading" style="position: absolute;top: 50%;width: 100px;left: 34%;z-index: 9999;display:none;">
+	<img class="img-fluid" src="images/loading.gif" alt="">
+	</div>
+	<div class="waitingresponse" style="position: absolute;top: 50%;width: 200px;left: 24%;z-index: 9999;display:none;">
+	Waiting for respons
+    </div>	
 	 <script type="text/javascript" src="cordova.js"></script>        
      <script src="js/jquery-3.4.0.min.js"></script>
      <script src="js/bootstrap.min.js"></script>    

@@ -29,7 +29,7 @@
     // device APIs are available
     //
     function onDeviceReady() {
-	  alert('rr');
+	 
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
     }
@@ -243,7 +243,7 @@
                      formData.append('flat', $('#flat_number').val());	
 					 formData.append('meet_person', $('#visited_person').val()); 
 					 formData.append('vehicle_no', $('#vehicle_reg').val());						 
-					 formData.append('image', $('input[type=file]')[0].files[0]);
+					 formData.append('image', $('#image').image());
 					
 							jQuery.ajax({					  
 								type:'POST', 
@@ -386,7 +386,7 @@
     }
 	
 	function capturePhoto() {
-    alert('ss');
+  
       navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
         destinationType: destinationType.DATA_URL });
     }

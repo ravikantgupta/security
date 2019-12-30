@@ -356,6 +356,24 @@
 			  }
 	
 	}
+	
+	function onPhotoDataSuccess(imageData) {
+   
+      var smallImage = document.getElementById('smallImage');
+      smallImage.style.display = 'block';    
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+	  jQuery('#image').val(imageData);
+    }
+
+     function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+	
+	function capturePhoto() {
+    
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    }
 		
 	</script>
 	<header>
@@ -430,7 +448,7 @@
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link change-link" href="#">
+						<a class="nav-link change-link" onclick="nextpage('resetpassword.html')" href="javascript:void(0)">
 							<span>
 								<img src="images/lock.png" alt="">
 							</span>Change Password
@@ -503,10 +521,26 @@
                 </div>
                 
                 <div class="col-12">
-				 <div class="form-control">
+				  
+				  <a href="javascript:void(0)" class="upload-box" onclick="capturePhoto();" type="file">
+						<div class="form-control">
+							<i class="fa fa-camera"></i>
+							<div class="d-flex">
+								<!--<div class="upload-img">
+									<img src="images/camera.png" alt="">
+								</div>-->
+								<div class="upload-title">
+									<p>Upload Your Photo</p>
+								</div>
+							</div>
+						</div>
+					</a>
+					<input id="image" name="image" value="" type="hidden">
+				<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+				 <!--<div class="form-control">
 					<input  class="upload-box" id="image" name="image" type="file">
 					</div>
-						<!--<div class="form-control">
+						<div class="form-control">
 							<i class="fa fa-camera"></i>
 							<div class="d-flex">
 								<div class="upload-img">

@@ -103,7 +103,7 @@ function salesManagerDashboard()
 										  <td >'+data.success.data[i].name+'</td>\
 										  <td>'+data.success.data[i].email+'</td>\
                                           <td>'+data.success.data[i].mobile+'</td>\
-										  <td><a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="editSalesPerson('+data.success.data[i].id+')"><i class="fa fa-pencil"></i></a>\
+										  <td><a href="javascript:void(0)" class="btn btn-primary btn-sm" onclick="editSalesPerson('+data.success.data[i].id+')"><i class="fa fa-pencil"></i></a>\
 										     <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="removeSalesPerson('+data.success.data[i].id+')"><i class="fa fa-trash-o"></i></a></td>';
 										  resulthtml+='</tr>';										  
 										}

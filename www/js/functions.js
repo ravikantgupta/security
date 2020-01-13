@@ -103,6 +103,38 @@ function removeLead(leadid)
 	
 }
 
+function editSalesPerson(salespersonid)
+{
+	window.localStorage.setItem("salespersonid", salespersonid);	
+	nextpage('view-sales-lead.html');
+	
+}
+
+function removeSalesPerson(salespersonid)
+{
+	
+	 jQuery('.mask').show();
+	 jQuery('.loading').show();
+             jQuery.ajax({					  
+						type:'POST',  
+						url:base_url+"/sales-manager/delete-sales-person",																
+						dataType: 'json',
+						data: {id: salespersonid},
+						success:function(data)
+							 {
+							 
+							   jQuery('.mask').hide();
+				               jQuery('.loading').hide();
+							   if(data.success.status=='1')
+							   { 
+                                   jQuery('#tr'+salespersonid).remove(); 								
+							   }    
+
+							}
+			           }); 
+	
+}
+
 function logout() {
 
   window.localStorage.removeItem("loggedIn");

@@ -64,19 +64,25 @@
 									 {	 
 									     jQuery('.mask').hide();
 				                         jQuery('.loading').hide();
-										 console.log(data.success);
+										
                                         if(data.success.status=='1')
                                            {
 										       window.localStorage.setItem("loggedIn", 1);
+											   
 											   window.localStorage.setItem('userdata',  JSON.stringify(data.success));
-
+											  
 											   if(data.success.role=='3')
 											   {
 											     nextpage('visitors-add.html');
-											   }											   
-											   if(data.success.role=='5')
+											   } 
+											   else if(data.success.role=='5')
 											   {
 											     nextpage('owner-dashboard.html');
+											   }else
+											   {
+											   
+											    nextpage('dashboard.html');
+											   
 											   }
 										     
 										   }else

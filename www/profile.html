@@ -5,21 +5,41 @@
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="css/font-awesome.min.css">  
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">    
     <link rel="stylesheet" href="css/style.css">
-    
+    <script type="text/javascript" src="js/functions.js"></script>
 </head>
-<body class="pb-0">
-	
+<body class="pb-0" onload="setvalue()">	
+<script>
+ function setvalue()
+	{ 
+		   	
+		var userdata=JSON.parse(window.localStorage.getItem("userdata"));	
+        
+		if(userdata)
+		{
+		  console.log(userdata);
+		  jQuery('.usename').html(userdata.name);	
+          jQuery('#name').val(userdata.name);	 
+		  jQuery('#email').val(userdata.email);	 
+		  jQuery('#mobile').val(userdata.mobile);	 
+			   
+		
+		  menuList();		 
+		}else
+		{		
+		 nextpage('login.html');
+		}
+		
+
+         		
+     }   
+</script>
 	<header>
         <div class="container-fluid">
             <div class="row">
@@ -36,13 +56,12 @@
                                     </button>
                                 </div>
                             </nav>
-                        </div>
-                        
+                        </div>                        
                         <div class="btn-box text-right">
                             <a class="btn-ball" href="notification.html">
                                 <img class="img-fluid" src="images/ball.png" alt="">
                             </a>
-                            <button class="btn sign-btn">SIGN OUT</button>
+                            <button class="btn sign-btn" onclick="logout()">SIGN OUT</button>
                         </div>
                         
                     </div>
@@ -62,49 +81,12 @@
 							</span>
 						</div>
 						<div class="text-box">
-							<span class="color-white">Khera Agarwal</span>
+							<span class="color-white usename">Khera Agarwal</span>
 							<p class="header__para">Profile &amp; Other List</p>
 						</div>
 					</div>
 				</div>
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="dasbord.html">
-							<span>
-								<img src="images/visitors.png" alt="">
-							</span>Dasbord
-						</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="visitor.html">
-							<span>
-								<img src="images/visitors.png" alt="">
-							</span> Add Visitors
-						</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<span>
-								<img src="images/user-app1.png" alt="">
-							</span>Profile
-						</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link change-link" href="resetpassword.html">
-							<span>
-								<img src="images/lock.png" alt="">
-							</span>Change Password
-						</a>
-					</li>
-					
-					<li class="nav-item pl-5">
-						 <button class="btn sign-btn">SIGN OUT</button>
-					</li>
-
-				</ul>
+				<ul class="navbar-nav" id="menulist"></ul>
 			</div>
 		</div>
 	<!-- Login section end -->
@@ -115,21 +97,21 @@
                 <div class="col-md-12">
                     <div class="form-control">
                         <i class="fa fa-user"></i>
-                        <input type="text" placeholder="Name">
+                        <input type="text" name="name" id="name" placeholder="Name">
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-control">
                         <i class="fa fa-envelope-o"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="email" name="email" id="email"  placeholder="Email">
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-control">
                         <i class="fa fa-mobile"></i>
-                        <input type="tel" placeholder="Mobile Number">
+                        <input type="tel" name="mobile" id="mobile" placeholder="Mobile Number">
                     </div>
                 </div>
 
@@ -137,7 +119,7 @@
                 <div class="col-md-12">
                     <div class="form-control">
                         <i class="fa fa-map-marker"></i>
-						<textarea rows="1" cols="1" type="text" placeholder="Address"></textarea>
+						<textarea rows="1" cols="1" name="address" id="address" type="text" placeholder="Address"></textarea>
                     </div>
                 </div>
 
@@ -145,7 +127,7 @@
                 <div class="col-md-12">
                     <div class="form-control">
                         <i class="fa fa-unlock-alt"></i>
-                        <input type="password" placeholder="Change Password">
+                        <input type="password" name="password" id="password" placeholder="Change Password">
                     </div>
                 </div>
 
@@ -156,24 +138,13 @@
             </div>
         </div>
     </section>
-
-
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script src="js/jquery-3.4.0.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.js"></script>
-	
-	<script>
-        
-        function openNav() {
-			document.getElementById("mySidenavRaj").style.width = "80%";
-		}
-
-		function closeNav() {
-			document.getElementById("mySidenavRaj").style.width = "0";
-		}
-        
-    </script>
-	
+	 <script type="text/javascript" src="cordova.js"></script>        
+     <script src="js/jquery-3.4.0.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>    
+	<div class="mask" style="display:none;"></div>	
+ <div class="loading" style="position: absolute;top: 50%;width: 100px;left: 34%;z-index: 9999;display:none;"><img class="img-fluid" src="images/loading.gif" alt=""></div>
+	 <style>
+   .mask{ position:fixed; background:#000; left:0px; top:0px; right:0px; bottom:0px; opacity:0.6; z-index:99; }
+   </style> 
 </body>
 </html>

@@ -106,7 +106,7 @@ function removeLead(leadid)
 function editSalesPerson(salespersonid)
 {
 	window.localStorage.setItem("salespersonid", salespersonid);	
-	nextpage('view-sales-lead.html');
+	nextpage('edit-sales-person.html');
 	
 }
 

@@ -85,7 +85,7 @@ function removeLead(leadid)
 	  jQuery('.loading').show();
              jQuery.ajax({					  
 						type:'POST',  
-						url:base_url+"/sales-person/delete",																
+						url:base_url+"/sales-person/delete-leads",																
 						dataType: 'json',
 						data: {id: leadid},
 						success:function(data)
@@ -95,7 +95,7 @@ function removeLead(leadid)
 				               jQuery('.loading').hide();
 							   if(data.success.status=='1')
 							   { 
-                                    nextpage('dashboard.html');									
+                                   jQuery('#tr'+leadid).remove(); 								
 							   }    
 
 							}

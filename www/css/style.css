@@ -385,7 +385,7 @@ a.nav-link span {
 
         /* input */
 
-input[type="text"], input[type="password"], input[type="number"], input[type="tel"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="tel"], textarea {
     display: block;
     width: 100%;
     border: none;
@@ -396,6 +396,15 @@ input[type="text"], input[type="password"], input[type="number"], input[type="te
     padding-bottom: 2px;
     background: #000;
     color: #fff;
+}
+
+textarea {
+    margin-top: 0px;
+	padding-bottom: 7px;
+}
+
+input:focus, textarea:focus {
+    outline-width: 0;
 }
 
         /* input */
@@ -434,14 +443,11 @@ input[type="text"], input[type="password"], input[type="number"], input[type="te
     display: block;
     font-size: 12px;
 	letter-spacing: 0.8px;
+	margin-bottom: 0;
 }
 
 .login-text label i {
     margin-right: 7px;
-}
-
-input:focus {
-    outline-width: 0;
 }
 
 .forget-link a {
@@ -512,14 +518,20 @@ input:focus {
 }
 
 .table-title {
-    padding-left: 18px;
+/*    padding-left: 18px;*/
     margin-bottom: 16px;
+	letter-spacing: 0.8px;
 }
 
 .table-responsive {
-    overflow-x: auto;
+    overflow-x: hidden;
+	overflow-y: scroll;
     border: solid 1px #eeeeee;
 }
+
+/* .table-responsive.table-height {
+	height: 293px;
+} */
 
 .table {
     color: #fff;
@@ -548,6 +560,10 @@ tr th:nth-child(3) {
     border-right: 1px solid #d3d3d3;
 }
 
+tr th:nth-child(5) {
+    border-left: 1px solid #d3d3d3;
+}
+
 tr th:last-child {
     border-right: none;
 }
@@ -568,6 +584,10 @@ tr td:nth-child(2) {
 
 tr td:nth-child(3) {
     border-right: 1px solid #d3d3d3;
+}
+
+tr td:nth-child(5) {
+    border-left: 1px solid #d3d3d3;
 }
 
 tr td:last-child {
@@ -634,6 +654,14 @@ tr td:last-child {
 	background: transparent;
 }
 
+.addressbar {
+	height: auto;
+}
+
+.addressbar textarea {
+	border: none;
+}
+
 .form-box input {
     display: inline-block;
     width: 100%;
@@ -673,6 +701,14 @@ tr td:last-child {
     margin-bottom: 0;
 }
 
+.profile-btn {
+    display: block;
+    width: 100%;
+    background: #ffa300;
+    color: #fff;
+    margin-top: 10px;
+}
+
 		/* visitor-From-css End */
 
 		/* visitor-From-css Start */
@@ -694,12 +730,182 @@ tr td:last-child {
 
 .scan-para {
     margin-top: 22px;
+    margin-bottom: 0;
 }
 
 .check-box p {
     font-size: 16px;
-    margin-bottom: 0;
     letter-spacing: 1px;
     line-height: 20px;
 }
+
+.scan-para.registration {
+    font-size: 13px;
+}
+
 		/* visitor-From-css End */
+
+		/* distination-css Start */
+
+.title {
+    margin: 10px 0px;
+    text-align: center;
+    color: #c8c8c8;
+}
+
+.title h2 {
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.title h5 {
+    font-size: 22px;
+}
+
+.login-text.visit-text label {
+    font-size: 11px;
+}
+
+		/* distination-css End */
+
+		/* notification-css Start */
+
+tr td.accept-btn {
+	vertical-align: middle;
+}
+
+.accept-btn .btn {
+	padding: 1px 6px;
+	font-size: 11px;
+	color: #fff;
+}
+
+.accept-btn .btn.bg-success {
+	margin-right: 15px;
+}
+
+		/* notification-css End */
+
+		/* vip-css Start */
+
+
+.vip-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.vip-title h6 {
+    margin-bottom: 0px;
+    margin-top: 1px;
+}
+
+.vip-title .login-btn {
+	padding: 4px 15px;
+    font-size: 11px;
+	letter-spacing: 0;
+}
+
+/*
+tr td span, tr td a {
+    display: block;
+    width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 auto;
+}*/
+
+.table-box {
+    list-style: none;
+    margin-bottom: 0;
+	width: 100%;
+	display: table;
+    padding: 0px 15px;
+	border-bottom: 1px solid #fff;
+}
+
+.table-box li {
+    display: inline-block;
+    font-size: 10px;
+	margin: 5px 0px;
+}
+
+.list-width {
+	width: 60%;
+}
+
+.list-box {
+	width: 40%;
+}
+
+.table-box .mobile {
+	width: 100%;
+}
+
+.table-box li p {
+    margin-bottom: 0px;
+	display: inline-block;
+}
+
+.table-box li b {
+    font-size: 11px;
+}
+
+.table-box p.email-text {
+    width: 75%;
+    white-space: normal;
+    overflow-x: hidden;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+}
+
+.para-img {
+	display: inline-block;
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    vertical-align: middle;
+    border: 1px solid #fff;
+/*    border-radius: 50%;*/
+}
+
+		/* vip-css Start */
+
+		/* profile-css Start */
+
+.profile-close {
+	display: block;
+    width: 26px;
+}
+
+.profile-box {
+    display: flex;
+    align-items: center;
+	margin-top: 5px;
+	justify-content: space-between;
+	margin-right: 30px;
+    color: #000;
+}
+
+.show-text p {
+    font-size: 15px;
+    margin: 10px 0px;
+}
+
+.show-text p span {
+    margin: 0 3px;
+    display: inline-block;
+}
+
+.show-text {
+    color: #000;
+	padding-left: 0;
+	list-style: none;
+}
+
+.show-text li {
+    display: flex;
+}
+
+		/* profile-css End */

@@ -56,7 +56,9 @@ function salesPersonDashboard()
 													<tr><th>Name</th><th>Email</th><th>Plan Name</th><th>Status</th></tr>\
 													</thead><tbody>';
 							   if(data.success.status=='1')
-							   {                                
+							   {
+                                  jQuery('.mask').hide();
+							       jQuery('.loading').hide();								   
                                   
                                    for (i in data.success.data) {										  
 										  resulthtml+='<tr id="tr'+data.success.data[i].id+'">\

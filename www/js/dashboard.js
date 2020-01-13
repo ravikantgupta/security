@@ -116,3 +116,42 @@ function salesManagerDashboard()
 			           });
 	
 }
+
+
+function salesManagerLead()
+{
+	
+	jQuery.ajax({					  
+						type:'POST',  
+						url:base_url+"/sales-manager/list-sales-leads",																
+						dataType: 'json',
+						data: {user_id: userdata.id},
+						success:function(data)
+							 {							 
+							   var resulthtml='<div class="col-12"><div class="table-title"><h6>Sales Lead Listing</h6></div></div>';
+							    resulthtml+='<div class="col-md-12"><div class="table-responsive table-height"><table class="table"><thead>\
+													<tr><th>Name</th><th>Email</th><th>Plan Name</th><th>Status</th></tr>\
+													</thead><tbody>';
+							   if(data.success.status=='1')
+							   {
+                                  jQuery('.mask').hide();
+							       jQuery('.loading').hide();								   
+                                  
+                                   for (i in data.success.data) {										  
+										  resulthtml+='<tr id="tr'+data.success.data[i].id+'">\
+										  <td >'+data.success.data[i].name+'</td>\
+										  <td>'+data.success.data[i].email+'</td>\
+                                          <td>'+data.success.data[i].plan_name+'</td>\
+										  <td><a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="viewLead('+data.success.data[i].id+')"><i class="fa fa-eye"></i></a>\
+										     <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="removeLead('+data.success.data[i].id+')"><i class="fa fa-trash-o"></i></a></td>';
+										  resulthtml+='</tr>';										  
+										}
+                                        resulthtml+='</tbody></table></div></div>';										
+									 jQuery('#vistorlistbody').html(resulthtml);
+                                   										
+							   }   
+
+							}
+			           });
+	
+}

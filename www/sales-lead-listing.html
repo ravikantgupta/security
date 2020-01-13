@@ -22,7 +22,7 @@
 </head>
 
 <body onload="setvalue()">
-<script> function setvalue()	{ 		var loggedIn=window.localStorage.getItem("loggedIn");       			var userdata=JSON.parse(window.localStorage.getItem("userdata"));		        jQuery('.usename').html(userdata.name);		if(userdata)		{  		 		  		  if(userdata.role=="6")		  {		    salesPersonDashboard();		  		  }		  		   menuList();		 		}else		{				 nextpage('login.html');		}		         		     }   </script>
+<script> function setvalue()	{ 		var loggedIn=window.localStorage.getItem("loggedIn");       			var userdata=JSON.parse(window.localStorage.getItem("userdata"));		        jQuery('.usename').html(userdata.name);		if(userdata)		{  		 		  		  if(userdata.role=="6")		  {		    salesPersonDashboard();		  		  }		  if(userdata.role=="7")		  {		    salesManagerLead();		  		  }		  		   menuList();		 		}else		{				 nextpage('login.html');		}		         		     }   </script>
     <header>
         <div class="container-fluid">
             <div class="row">

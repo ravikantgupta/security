@@ -127,7 +127,8 @@ function salesManagerLead()
 						dataType: 'json',
 						data: {user_id: userdata.id},
 						success:function(data)
-							 {							 
+							 {	
+							 
 							   var resulthtml='<div class="col-12"><div class="table-title"><h6>Sales Lead Listing</h6></div></div>';
 							    resulthtml+='<div class="col-md-12"><div class="table-responsive table-height"><table class="table"><thead>\
 													<tr><th>Name</th><th>Email</th><th>Plan Name</th><th>Status</th></tr>\

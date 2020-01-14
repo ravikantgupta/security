@@ -8,7 +8,10 @@ function securityDashboard()
 						dataType: 'json',
 						data: {guard_id: userdata.id},
 						success:function(data)
-							 {							 
+							 {
+                                jQuery('.mask').hide();
+							       jQuery('.loading').hide();
+								   
 							   var visitorhtml='<div class="col-12"><div class="table-title"><h6>Visitor List</h6></div></div>';
 							    visitorhtml+='<div class="col-md-12"><div class="table-responsive"><table class="table"><thead>\
 													<tr><th>Mobile No.</th><th class="green">Time In</th><th class="red">Time Out</th><th>Status</th></tr>\
@@ -50,15 +53,16 @@ function salesPersonDashboard()
 						dataType: 'json',
 						data: {user_id: userdata.id},
 						success:function(data)
-							 {							 
+							 {	
+                                jQuery('.mask').hide();
+							       jQuery('.loading').hide();							 
 							   var resulthtml='<div class="col-12"><div class="table-title"><h6>Sales Lead Listing</h6></div></div>';
 							    resulthtml+='<div class="col-md-12"><div class="table-responsive table-height"><table class="table"><thead>\
 													<tr><th>Name</th><th>Email</th><th>Plan Name</th><th>Status</th></tr>\
 													</thead><tbody>';
 							   if(data.success.status=='1')
 							   {
-                                  jQuery('.mask').hide();
-							       jQuery('.loading').hide();								   
+                                  								   
                                   
                                    for (i in data.success.data) {										  
 										  resulthtml+='<tr id="tr'+data.success.data[i].id+'">\
@@ -88,15 +92,16 @@ function salesManagerDashboard()
 						dataType: 'json',
 						data: {user_id: userdata.id},
 						success:function(data)
-							 {							 
+							 {	
+                                 jQuery('.mask').hide();
+							       jQuery('.loading').hide();							 
 							   var resulthtml='<div class="col-12"><div class="table-title"><h6>Sales Person Listing</h6></div></div>';
 							    resulthtml+='<div class="col-md-12"><div class="table-responsive table-height"><table class="table"><thead>\
 													<tr><th>Name</th><th>Email</th><th>Mobile</th><th>Status</th></tr>\
 													</thead><tbody>';
 							   if(data.success.status=='1')
 							   {
-                                  jQuery('.mask').hide();
-							       jQuery('.loading').hide();								   
+                                  								   
                                   
                                    for (i in data.success.data) {										  
 										  resulthtml+='<tr id="tr'+data.success.data[i].id+'">\
@@ -127,15 +132,15 @@ function salesManagerLead()
 						data: {user_id: userdata.id},
 						success:function(data)
 							 {	
-							 
+							    jQuery('.mask').hide();
+							      jQuery('.loading').hide();
 							   var resulthtml='<div class="col-12"><div class="table-title"><h6>Sales Lead Listing</h6></div></div>';
 							    resulthtml+='<div class="col-md-12"><div class="table-responsive table-height"><table class="table"><thead>\
 													<tr><th>Name</th><th>Email</th><th>Plan Name</th><th>Status</th></tr>\
 													</thead><tbody>';
 							   if(data.success.status=='1')
 							   {
-                                  jQuery('.mask').hide();
-							      jQuery('.loading').hide();								   
+                                 								   
                                   
                                    for (i in data.success.data) {										  
 										  resulthtml+='<tr id="tr'+data.success.data[i].id+'">\

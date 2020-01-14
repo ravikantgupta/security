@@ -1,34 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ASQARI Visitorslist Table</title>
+    <title>ASQARI Profile</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">  
+    <link rel="stylesheet" href="css/font-awesome.min.css">   
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">    
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">    
     <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript" src="js/functions.js"></script>
+     <script type="text/javascript" src="js/functions.js"></script>
 </head>
-<body class="pb-0" onload="setvalue()">	
-<script>
+<body class="white pb-0" onload="setvalue()">
+	<script>
  function setvalue()
 	{ 
 		   	
 		var userdata=JSON.parse(window.localStorage.getItem("userdata"));	
         
 		if(userdata)
-		{
-		  console.log(userdata);
-		  jQuery('.usename').html(userdata.name);	
-          jQuery('#name').val(userdata.name);	 
-		  jQuery('#email').val(userdata.email);	 
-		  jQuery('#mobile').val(userdata.mobile);	 
-			   
+		{		  
+		  jQuery('.usename').html(userdata.name);          
+          jQuery.ajax({					  
+						type:'POST',  
+						url:base_url+"/view-profile",																
+						dataType: 'json',
+						data: {id: userdata.id},
+						success:function(data)
+							 {		
+							   jQuery('.mask').hide();
+							   jQuery('.loading').hide();							 
+							 
+							   if(data.success.status=='1')
+							   {
+                                   jQuery('.name').html(data.success.data.name);							   
+								 var reshtml='<li>\
+									<p class="mr-1"><b>Name </b></p>\
+									<p><span>:<span class="small">-</span></span>'+data.success.data.name+'</p>\
+								</li>\
+								<li>\
+									<p class="mr-1"><b>Email </b></p>\
+									<p><span>:<span class="small">-</span></span>'+data.success.data.email+'</p>\
+								</li>\
+								<li>\
+									<p class="mr-1"><b>Mobile Number </b></p>\
+									<p><span>:<span class="small">-</span></span>'+data.success.data.mobile+'</p>\
+								</li>';	
+
+                                     jQuery('.profiledetail').html(reshtml);								
+							   }    
+
+							}
+			           });		  
 		
 		  menuList();		 
 		}else
@@ -44,32 +70,23 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="d-flex">
-                       
+                    <div class="d-flex">                        
                         <div class="link-nav">
-                            <nav class="navbar navbar-expand-lg navbar-dark p-0">
-                                <div class="container pr-0">
-                                    <button class="navbar-toggler" onclick="openNav()">
-                                        <span class="navbar-toggler-icon"></span>
-                                        <span class="navbar-toggler-icon"></span>
-                                        <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                </div>
-                            </nav>
+                            <div class="profile-box">
+                            	<a href="javascript:void(0)" onclick="openNav()" class="profile-close">
+									<img class="img-fluid" src="images/left-black.png" alt="">
+								</a>
+                           		<span>Profile</span>
+                            </div>
                         </div>                        
-                        <div class="btn-box text-right">
-                            <a class="btn-ball" href="notification.html">
-                                <img class="img-fluid" src="images/ball.png" alt="">
-                            </a>
+                        <div class="btn-box text-right">                           
                             <button class="btn sign-btn" onclick="logout()">SIGN OUT</button>
-                        </div>
-                        
+                        </div>                        
                     </div>
                 </div>
             </div>
         </div>
-    </header>
-    
+    </header>    
     <!-- Login section start -->
 		<div class="mob-nav sidenavRaj" id="mySidenavRaj">
 			<div class="mob-navbaar" id="accordion">
@@ -81,7 +98,7 @@
 							</span>
 						</div>
 						<div class="text-box">
-							<span class="color-white usename">Khera Agarwal</span>
+							<span class="color-white usename"></span>
 							<p class="header__para">Profile &amp; Other List</p>
 						</div>
 					</div>
@@ -90,55 +107,41 @@
 			</div>
 		</div>
 	<!-- Login section end -->
+	
+	<section class="black-banner">
+		<div class="container-fluid">
+			<div class="row">
+
+                <div class="col-12">
+                    <div class="customer-name pt-2 text-center">
+						<p class="name"></p>
+                    </div>
+                </div>
+			</div>
+		</div>
+    </section>
     
-    <section class="form-box pt-5">
+    <section class="form-box">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-control">
-                        <i class="fa fa-user"></i>
-                        <input type="text" name="name" id="name" placeholder="Name">
-                    </div>
+                	<ul class="show-text profiledetail">
+                		
+                	</ul>
+						
                 </div>
+                <div class="col-md-12 text-center mt-5">                  
 
-                <div class="col-md-12">
-                    <div class="form-control">
-                        <i class="fa fa-envelope-o"></i>
-                        <input type="email" name="email" id="email"  placeholder="Email">
-                    </div>
+				 <a href="javascript:void(0)" onclick="nextpage('edit-profile.html')" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
+
+				 
                 </div>
-
-                <div class="col-md-12">
-                    <div class="form-control">
-                        <i class="fa fa-mobile"></i>
-                        <input type="tel" name="mobile" id="mobile" placeholder="Mobile Number">
-                    </div>
-                </div>
-
-
-                <div class="col-md-12">
-                    <div class="form-control">
-                        <i class="fa fa-map-marker"></i>
-						<textarea rows="1" cols="1" name="address" id="address" type="text" placeholder="Address"></textarea>
-                    </div>
-                </div>
-
-
-                <div class="col-md-12">
-                    <div class="form-control">
-                        <i class="fa fa-unlock-alt"></i>
-                        <input type="password" name="password" id="password" placeholder="Change Password">
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <button class="btn profile-btn">SUBMIT</button>
-                </div>
-
             </div>
+			
         </div>
     </section>
-	 <script type="text/javascript" src="cordova.js"></script>        
+
+   <script type="text/javascript" src="cordova.js"></script>        
      <script src="js/jquery-3.4.0.min.js"></script>
      <script src="js/bootstrap.min.js"></script>    
 	<div class="mask" style="display:none;"></div>	
@@ -146,5 +149,9 @@
 	 <style>
    .mask{ position:fixed; background:#000; left:0px; top:0px; right:0px; bottom:0px; opacity:0.6; z-index:99; }
    </style> 
+    <script>
+     jQuery('.mask').show();
+	  jQuery('.loading').show();
+   </script>
 </body>
 </html>

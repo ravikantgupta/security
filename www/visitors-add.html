@@ -66,7 +66,7 @@
 
 							}
 			           });
-         		
+         menuList();	 		
      }
 	 function getvisitorinfo()
             {	
@@ -411,9 +411,7 @@
                         </div>
                         
                         <div class="btn-box text-right">
-                            <a class="btn-ball" href="#">
-                                <img class="img-fluid" src="images/ball.png" alt="">
-                            </a>
+                            
                             <button class="btn sign-btn" onclick="logout()">SIGN OUT</button>
                         </div>
                         
@@ -439,39 +437,7 @@
 						</div>
 					</div>
 				</div>
-				<ul class="navbar-nav">
-				
-				<li class="nav-item">
-                    <span>
-                        <img src="images/visitors.png" alt="">
-                    </span>
-                    <a class="nav-link"onclick="nextpage('dashboard.html')" href="javascript:void(0)">Dashboard</a>
-                </li>
-
-                <li class="nav-item">
-                    <span>
-                        <img src="images/visitors.png" alt="">
-                    </span>
-                    <a class="nav-link" onclick="nextpage('visitors-add.html')" href="javascript:void(0)">Visitors Add</a>
-                </li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<span>
-								<img src="images/user-app1.png" alt="">
-							</span>Profile
-						</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link change-link" onclick="nextpage('resetpassword.html')" href="javascript:void(0)">
-							<span>
-								<img src="images/lock.png" alt="">
-							</span>Change Password
-						</a>
-					</li>
-
-				</ul>
+				<ul class="navbar-nav" id="menulist"></ul>
 			</div>
 		</div>
 	<!-- Login section end -->
@@ -676,19 +642,6 @@
      <script src="js/bootstrap.min.js"></script>    
    <style>
    .mask{ position:fixed; background:#000; left:0px; top:0px; right:0px; bottom:0px; opacity:0.6; z-index:99; }
-   </style>
-	
-	<script>
-        
-        function openNav() {
-			document.getElementById("mySidenavRaj").style.width = "80%";
-		}
-
-		function closeNav() {
-			document.getElementById("mySidenavRaj").style.width = "0";
-		}
-        
-    </script>
-	
+   </style>	
 </body>
 </html>

@@ -119,8 +119,7 @@ function salesManagerDashboard()
 
 
 function salesManagerLead()
-{
-	
+{	
 	jQuery.ajax({					  
 						type:'POST',  
 						url:base_url+"/sales-manager/list-sales-leads",																
@@ -136,7 +135,7 @@ function salesManagerLead()
 							   if(data.success.status=='1')
 							   {
                                   jQuery('.mask').hide();
-							       jQuery('.loading').hide();								   
+							      jQuery('.loading').hide();								   
                                   
                                    for (i in data.success.data) {										  
 										  resulthtml+='<tr id="tr'+data.success.data[i].id+'">\
@@ -155,4 +154,53 @@ function salesManagerLead()
 							}
 			           });
 	
+}
+
+function ownerDashboard()
+	{	
+
+        jQuery.ajax({					  
+						type:'POST',  
+						url:base_url+"/security/flat-visitor-list",																
+						dataType: 'json',
+						data: {id: userdata.id},
+						success:function(data)
+							 {
+							   jQuery('.mask').hide();
+							   jQuery('.loading').hide();
+								  
+							   var visitorhtml='<div class="col-12"><div class="table-title"><h6>Visitor List</h6></div></div>';
+							   visitorhtml+='<div class="col-md-12"><div class="table-responsive"><table class="table"><thead>\
+							      <tr><th>Mobile No.</th><th class="">Date</th><th class="red">Time In</th><th>Status</th></tr>\
+                                  </thead><tbody>';
+							   if(data.success.status=='1')
+							   {                                 
+                                  
+                                   for (i in data.success.data) {						
+										  
+										  visitorhtml+='<tr>\
+										  <td >\<span >'+data.success.data[i].mobile+'</span></td>\
+										  <td><span >'+data.success.data[i].entry_date+'</span></td>\
+                                          <td><span class="green">'+data.success.data[i].entry_time+'</span></td>';
+									if(data.success.data[i].status=='1')
+                                     {									
+                                      visitorhtml+='<td><span class="green">Success</span></td>';
+									 }else
+									 {
+									  visitorhtml+='<td><span class="yellow">Pending</span></td>';
+									 }
+									 
+                                       visitorhtml+='</tr>';
+										  
+										}
+                                     
+									 visitorhtml+='</tbody></table></div></div>';	
+										
+									 jQuery('#vistorlistbody').html(visitorhtml);
+                                   										
+							   }    
+
+							}
+			           });
+         		
 }

@@ -41,6 +41,12 @@
 		    salesManagerDashboard();		  
 		  }
 		  
+		  if(userdata.role=="5")
+		  {
+		    ownerDashboard();	
+            jQuery('.notification').show();			
+		  }
+		  
 		   menuList();
 		 
 		}else
@@ -71,7 +77,12 @@
                         <div class="table-para">
                             <p>Dasbord</p>
                         </div>
-
+                          <div class="btn-box text-right notification" style="display:none;">
+                            <a class="btn-ball" href="javascript:void(0)" onclick="nextpage('notification.html')">
+                                <img class="img-fluid" src="images/ball.png" alt="">
+                            </a>
+                           
+                        </div>
                     </div>
                 </div>
 

@@ -217,7 +217,7 @@ function salesBuildingOwnerDashboard()
 						type:'POST',  
 						url:base_url+"/builder-owner/dashboad",																
 						dataType: 'json',
-						data: {id: userdata.id},
+						data: {user_id: userdata.id},
 						success:function(data)
 							 {
 							   jQuery('.mask').hide();

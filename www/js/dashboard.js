@@ -209,3 +209,80 @@ function ownerDashboard()
 			           });
          		
 }
+
+function salesBuildingOwnerDashboard()
+	{	
+
+        jQuery.ajax({					  
+						type:'POST',  
+						url:base_url+"/builder-owner/dashboad",																
+						dataType: 'json',
+						data: {id: userdata.id},
+						success:function(data)
+							 {
+							   jQuery('.mask').hide();
+							   jQuery('.loading').hide();
+							   if(data.success.status=='1')
+							   {
+							   var sbohtml='<div class="col-12">\
+										<div class="table-title">\
+											<h6>Live Tracking</h6>\
+										</div>\
+									</div>\
+									<div class="col-6 pr-2">\
+										<div class="iconic-w-wrap number-rotate">\
+											<div class="main-img">\
+												<img src="https://wps-dev.com/dev/securityguard/public/backend/images/admin/icon1.png"\
+													alt="">\
+											</div>\
+											<div class="w-meta-info">\
+												<span class="w-meta-value number-animate bold">'+data.success.data.total_visitor+'</span>\
+												<span class="w-meta-value number-animate">VISITORS</span>\
+											</div>\
+										</div>\
+									</div>\
+									<div class="col-6 pl-2">\
+										<div class="iconic-w-wrap number-rotate">\
+											<div class="main-img">\
+												<img src="https://wps-dev.com/dev/securityguard/public/backend/images/admin/icon1.png"\
+													alt="">\
+											</div>\
+											<div class="w-meta-info">\
+												<span class="w-meta-value number-animate bold">'+data.success.data.total_securtitygard+'</span>\
+												<span class="w-meta-value number-animate">GUARDS</span>\
+											</div>\
+										</div>\
+										</div>\
+									<div class="col-6 pr-2">\
+										<div class="iconic-w-wrap number-rotate">\
+											<div class="main-img">\
+												<img src="https://wps-dev.com/dev/securityguard/public/backend/images/admin/icon1.png"\
+													alt="">\
+											</div>\
+											<div class="w-meta-info">\
+												<span class="w-meta-value number-animate bold">'+data.success.data.flats+'</span>\
+												<span class="w-meta-value number-animate">Total Flats</span>\
+											</div>\
+										</div>\
+									</div>\
+									<div class="col-6 pl-2">\
+										<div class="iconic-w-wrap">\
+											<div class="main-img">\
+												<img src="https://wps-dev.com/dev/securityguard/public/backend/images/admin/icon1.png"\
+													alt="">\
+											</div>\
+											<div class="w-meta-info">\
+												<span class="w-meta-value number-animate bold">'+data.success.data.totol_vip+'</span>\
+												<span class="w-meta-value number-animate">Total VIP</span>\
+											</div>\
+										</div>\
+									  </div>';   
+																			
+									 jQuery('#vistorlistbody').html(sbohtml);
+                                   										
+							   }    
+
+							}
+			           });
+         		
+}

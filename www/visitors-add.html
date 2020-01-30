@@ -375,19 +375,18 @@
 	
 	function onPhotoDataSuccess(imageData) {
    
-      textocr.recText(0, /*3,*/ imageData, onSuccess, onFail); // removed returnType (here 3) from version 2.0.0
-      // for sourceType Use 0,1,2,3 or 4
-      // for returnType Use 0,1,2 or 3 // 3 returns duplicates[see table]
-      function onSuccess(recognizedText) {
-            //var element = document.getElementById('pp');
-            //element.innerHTML=recognizedText;
-            //Use above two lines to show recognizedText in html
-            console.log(recognizedText);
+   alert('s');
+      textocr.recText(0, 3, imageData, onSuccess, onFail); 
+	   alert('r');
+      function onSuccess(recognizedText) {    
+           
             alert(recognizedText);
       }
+	   alert('a');
       function onFail(message) {
             alert('Failed because: ' + message);
       }
+	   alert('m');
       var smallImage = document.getElementById('smallImage');
       smallImage.style.display = 'block';    
       smallImage.src = "data:image/jpeg;base64," + imageData;

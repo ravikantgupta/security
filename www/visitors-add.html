@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript" src="cordova.js"></script> 
+	 <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
+
 </head>
 <body onload="setvalue()">
 	<script>
@@ -381,8 +383,8 @@
 	  jQuery('#image').val(imageData);
 	  
 	
-
-       var myImage= document.getElementById('image');
+      alert('ssss');
+       var myImage= document.getElementById('smallImage');
 
        Tesseract.recognize(myImage).then(function(result){
      
@@ -391,7 +393,7 @@
 
         });
 
-      
+      alert('ssss1');
     }
 
      function onFail(message) {
@@ -653,8 +655,7 @@
 	        
      <script src="js/jquery-3.4.0.min.js"></script>
      <script src="js/bootstrap.min.js"></script>    
-	 <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
-
+	
    <style>
    .mask{ position:fixed; background:#000; left:0px; top:0px; right:0px; bottom:0px; opacity:0.6; z-index:99; }
    </style>	

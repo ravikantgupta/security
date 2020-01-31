@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>ASQARI Add Bilder Owner</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"><script type="text/javascript" src="js/functions.js"></script>	
+</head><body onload="setvalue()">
+   <script>   var otp=''; function setvalue()	{       			var userdata=JSON.parse(window.localStorage.getItem("userdata"));      		if(userdata)		{		   jQuery('.usename').html(userdata.name);		   jQuery('#user_id').val(userdata.id);		 		}		menuList();	}	function sendotp(){    jQuery('.mask').show();	jQuery('.loading').show();    var email=jQuery('#email').val();	            jQuery.ajax({					  						type:'POST',  						url:base_url+"/sendotp",																						dataType: 'json',						data: {email: email},						success:function(data)							 {									   jQuery('.mask').hide();							   jQuery('.loading').hide();							 							  							   if(data.success.status=='1')							   {                                       otp=data.success.data;                                   jQuery('.msg1').html('<span style="color:green">'+data.success.massege+'</span>');                             	                                  jQuery('.screen1').hide();								  jQuery('.screen2').show();								  							   }else                                {																 jQuery('.msg1').html('<span style="color:red">'+data.success.massege+'</span>');                             									}							   							}			           });	return false;				   }	function register(){    if(jQuery('#otp').val()!=otp)   {     jQuery('.otp-error').show();   return false;   }else   {    jQuery('.otp-error').hide();   }       jQuery('.mask').show();	jQuery('.loading').show();		            jQuery.ajax({					  						type:'POST',  						url:base_url+"/register",																						dataType: 'json',						data: $( "#add-bilder-owner-form" ).serialize(),						success:function(data)							 {									   jQuery('.mask').hide();							   jQuery('.loading').hide();	 							 							   if(data.success.status=='1')							   {                                      window.localStorage.setItem("customer_id", data.success.user_id);                                  nextpage('add-bilder-owner-kyc.html');								  							   }else                                {								  jQuery('.msg1').html('<span style="color:red">'+data.success.massege+'</span>');									}							   							}			           }); return false;}		</script><header>        <div class="container-fluid">            <div class="row">                <div class="col-md-12">                    <div class="d-flex">					<div class="link-nav">                            <nav class="navbar navbar-expand-lg navbar-dark p-0">                                <div class="container pr-0">                                    <button class="navbar-toggler" onclick="openNav()">                                        <span class="navbar-toggler-icon"></span>                                        <span class="navbar-toggler-icon"></span>                                        <span class="navbar-toggler-icon"></span>                                    </button>                                </div>                            </nav>                        </div>                        <div class="btn-box text-right">                            <button class="btn sign-btn" onclick="logout()">SIGN OUT</button>                        </div>                    </div>                </div>            </div>			</div>    </header>    <!-- Login section start -->    <div class="mob-nav sidenavRaj" id="mySidenavRaj">        <div class="mob-navbaar" id="accordion">            <div class="leftbar-header">                <div class="link">                    <div class="nav-close">                        <span class="mob-right" onclick="closeNav()">                            <img class="img-fluid" src="images/left.png" alt="">                        </span>                    </div>                    <div class="text-box">                        <span class="color-white usename">Khera Agarwal</span>                        <p class="header__para">Profile & Other List</p>                    </div>                </div>            </div>            <ul class="navbar-nav" id="menulist">                 </ul>        </div>    </div>    <!-- Login section end -->
+<section class="form-box pt-5">
+        <div class="container">		 <form id="add-bilder-owner-form" onsubmit="return sendotp();">
+            <div class="row screen1" >
+                <div class="col-md-12">
+                    <h6>Add Bilder Owner</h6>					<p class="msg"></p> 
+                </div>
+                <div class="col-md-12">
+                    <div class="form-control">
+                        <input type="text" name="name" id="name" placeholder="Name" required>					</div>
+                    <div class="form-control">
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-control">
+                        <input type="number" name="mobile" id="mobile"   placeholder="Mobile" required>
+                    </div>
+                    <div class="form-control">
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button class="btn profile-btn">SUBMIT</button>
+                </div>
+            </div>			<div class="row screen2" style="display:none;">                <div class="col-md-12">                    <h6>OTP</h6>					<p class="msg1"></p>                 </div>                <div class="col-md-12">                    <div class="form-control">                        <input type="text" name="otp" id="otp" placeholder="Enter OTP">					</div>                   <span class="error otp-error" style="color:red;display:none;">Please enter valid otp.</span>                </div>                <div class="col-md-12">                    <button class="btn profile-btn" onclick="register()" type="button">SUBMIT</button>                </div>            </div>			<input type="hidden" name="user_id" id="user_id"/>			</form>
+        </div>
+    </section>
+    <script type="text/javascript" src="cordova.js"></script>             <script src="js/jquery-3.4.0.min.js"></script>     <script src="js/bootstrap.min.js"></script>   <div class="mask" style="display:none;"></div>	 <div class="loading" style="position: absolute;top: 50%;width: 100px;left: 34%;z-index: 9999;display:none;"><img class="img-fluid" src="images/loading.gif" alt=""></div>	 <style>   .mask{ position:fixed; background:#000; left:0px; top:0px; right:0px; bottom:0px; opacity:0.6; z-index:99; }   </style> 
+</body>
+
+</html>

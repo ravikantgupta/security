@@ -386,37 +386,14 @@
       alert('Failed because: ' + message);
     }
 	
-	function capturePhoto() {
-	
-	  navigator.camera.getPicture(onSuccess, onFail, { quality: 100, correctOrientation: true });
- 
-			function onSuccess(imageData) {
-			alert('sr');
-				  textocr.recText(0, /*3,*/ imageData, onSuccess, onFail); // removed returnType (here 3) from version 2.0.0
-				   alert('sr2');
-				  function onSuccess(recognizedText) {
-				  alert('sr3');
-						//var element = document.getElementById('pp');
-						//element.innerHTML=recognizedText;
-						//Use above two lines to show recognizedText in html
-					
-						alert(recognizedText);
-				  }
-				  function onFail(message) {
-						alert('Failed because: ' + message);
-				  }
-			}
-			function onFail(message) {
-				  alert('Failed because: ' + message);
-			}
-  alert('sr1');
-      /*navigator.camera.getPicture(onPhotoDataSuccess, onFail, { 
+	function capturePhoto() {  
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { 
 	    quality: 25,
 		targetWidth: 500,
         targetHeight: 500,
         destinationType: destinationType.DATA_URL ,
 		correctOrientation: true		
-		});*/
+		});
     }
 		
 	</script>

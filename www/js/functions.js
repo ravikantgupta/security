@@ -46,8 +46,7 @@ function menuList()
 
    if(menulists)
    {
-	   var menuhtml='<li class="nav-item"><span><img src="images/visitors.png" alt=""></span>\
-                    <a class="nav-link"onclick="nextpage(\'dashboard.html\')" href="javascript:void(0)">Dashboard</a></li>';	
+	   var menuhtml='';	
 					
      for (i in menulists.menulist) {
 		 

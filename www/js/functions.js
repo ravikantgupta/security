@@ -78,27 +78,32 @@ function viewLead(leadid)
 }
 
 function removeLead(leadid)
-{
-	
-	 jQuery('.mask').show();
+{ 
+ 
+  var r = confirm("Please Confirm if you want to delete yes/no");
+  if (r == true) {	  
+      jQuery('.mask').show();
 	  jQuery('.loading').show();
-             jQuery.ajax({					  
-						type:'POST',  
-						url:base_url+"/sales-person/delete-leads",																
-						dataType: 'json',
-						data: {id: leadid},
-						success:function(data)
-							 {	
-							 
-							   jQuery('.mask').hide();
-				               jQuery('.loading').hide();
-							   if(data.success.status=='1')
-							   { 
-                                   jQuery('#tr'+leadid).remove(); 								
-							   }    
+		 jQuery.ajax({					  
+					type:'POST',  
+					url:base_url+"/sales-person/delete-leads",																
+					dataType: 'json',
+					data: {id: leadid},
+					success:function(data)
+						 {	
+						 
+						   jQuery('.mask').hide();
+						   jQuery('.loading').hide();
+						   if(data.success.status=='1')
+						   { 
+							   jQuery('#tr'+leadid).remove(); 								
+						   }    
 
-							}
-			           }); 
+						}
+				   }); 
+  
+    }
+	  
 	
 }
 
@@ -111,7 +116,8 @@ function editSalesPerson(salespersonid)
 
 function removeSalesPerson(salespersonid)
 {
-	
+   var r = confirm("Please Confirm if you want to delete yes/no");
+   if (r == true) {
 	 jQuery('.mask').show();
 	 jQuery('.loading').show();
              jQuery.ajax({					  
@@ -131,7 +137,7 @@ function removeSalesPerson(salespersonid)
 
 							}
 			           }); 
-	
+     }
 }
 
 function logout() {

@@ -1,0 +1,10 @@
+{
+  "blinkid-cordova": {
+    "source": {
+      "type": "registry",
+      "id": "blinkid-cordova"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}

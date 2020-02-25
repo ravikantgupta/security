@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+     <title>Pure CBD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=devanagari,latin-ext"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&display=swap&subset=latin-ext,vietnamese"
+        rel="stylesheet">
+   <script type="text/javascript" src="js/functions.js"></script>
+ 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">   
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+        <div class="app">
+            <h1>Demo App</h1>
+            <button id="scanButton">Scan clk</button>
+            <div id="resultDiv"></div>
+            <div id="successfulImageDiv">
+                <p>Successful Image:</p>
+                <img id="successfulImage" width="80%" />
+            </div>
+            <div id="documentFrontImageDiv">
+                <p>Document Image:</p>
+                <img id="documentFrontImage" width="80%" />
+            </div>
+            <div id="documentBackImageDiv">
+                <p>Document Image:</p>
+                <img id="documentBackImage" width="80%" />
+            </div>
+            <div id="faceImageDiv">
+                <p>Face Image:</p>
+                <img id="faceImage" width="60%" />
+            </div>
+        </div>
+<script type="text/javascript" src="cordova.js"></script> 		
+<script>
+// Cordova sample
+
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicity call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+        
+        var resultDiv = document.getElementById('resultDiv');
+
+        var successfulImageDiv = document.getElementById('successfulImageDiv');
+        var successfulImage = document.getElementById('successfulImage');
+
+        var documentFrontImageDiv = document.getElementById('documentFrontImageDiv');
+        var documentFrontImage = document.getElementById('documentFrontImage');
+
+        var documentBackImageDiv = document.getElementById('documentBackImageDiv');
+        var documentBackImage = document.getElementById('documentBackImage');
+
+        var faceImageDiv = document.getElementById('faceImageDiv');
+        var faceImage = document.getElementById('faceImage');
+
+        successfulImageDiv.style.visibility = "hidden"
+        documentFrontImageDiv.style.visibility = "hidden"
+        documentBackImageDiv.style.visibility = "hidden"
+        faceImageDiv.style.visibility = "hidden"
+
+        // to scan any machine readable travel document (passports, visa's and IDs with 
+        // machine readable zone), use MrtdRecognizer
+//        var mrtdRecognizer = new cordova.plugins.BlinkID.MrtdRecognizer();
+//        mrtdRecognizer.returnFullDocumentImage = true;
+        // wrap recognizer with SuccessFrameGrabberRecognizer to obtain camera frame from the successful scan
+//        var mrtdSuccessFrameGrabber = new cordova.plugins.BlinkID.SuccessFrameGrabberRecognizer(mrtdRecognizer);
+
+        // BlinkIDCombinedRecognizer automatically classifies different document types and scans the data from
+        // the supported document
+        var blinkIdCombinedRecognizer = new cordova.plugins.BlinkID.BlinkIdCombinedRecognizer();
+        blinkIdCombinedRecognizer.returnFullDocumentImage = true;
+        blinkIdCombinedRecognizer.returnFaceImage = true;
+
+        // there are lots of Recognizer objects in BlinkID - check blinkIdScanner.js for full reference
+
+        var blinkidOverlaySettings = new cordova.plugins.BlinkID.BlinkIdOverlaySettings();
+
+        // create RecognizerCollection from any number of recognizers that should perform recognition
+        var recognizerCollection = new cordova.plugins.BlinkID.RecognizerCollection([blinkIdCombinedRecognizer /*, mrtdSuccessFrameGrabber */]);
+
+        // package name/bundleID com.microblink.blinkid
+        var licenseKeys = {
+            android: 'sRwAAAAWY29tLm1pY3JvYmxpbmsuYmxpbmtpZJ9ew00uWSf86/uxZPNsLDMPOXp1UdfNmlUhMvov7pQ2BPKxOQvgd4e4Gq8RsexLqNUV2HhUZLqsiNT6ZAeHBVSxNtCrxML/LzmtQ6UKkvp2E2vWX8aJtT/kO2dwzuFCs+cRjYFCWs+XS3OGudt53wBMkMtyPE2rpnl7GwUEmQ5lhd/kmeYjKspGNRohQPFcfaGXalD2fudh24WIfP7sgxEWda/PvdrMaBRoaX3OxvFLWcsLHyGBMxrQjBq7P0VDlJ/HCAJMtH4m9fzhWw==',
+            ios: 'sRwAAAEWY29tLm1pY3JvYmxpbmsuYmxpbmtpZFG2rW9X4lA0y++pNb4tS3UVrd+YrVNFzG8W5Mj3ralCcPA9yeD2S5a+daBzhkQAGz1UMQSg7ijGZWIfDyUOjQSV91Uqh7GybSLCnHnsYYPEvEqOcq8z54hQH9uhXZQXMCTMup5P7P/9Sf2Kg9RW5g0j5D8KtVeewqtNrRX/ftcym49exqfskkg2edxg1geNHWLNjTM3s1rTAverP53r8O3RgolUH7M4isUUlGumkq2L0PckLZ+Kww2w04Aq3cJsdF0XIBhej3CgOOIySQ=='
+        };
+
+        scanButton.addEventListener('click', function() {
+            cordova.plugins.BlinkID.scanWithCamera(
+            
+                // Register the callback handler
+                function callback(cancelled) {
+
+                    resultDiv.innerHTML = "";
+                    
+                    // handle cancelled scanning
+                    if (cancelled) {
+                        resultDiv.innerHTML = "Cancelled!";
+                        return;
+                    }
+                    
+                    // if not cancelled, every recognizer will have its result property updated
+
+                    successfulImageDiv.style.visibility = "hidden"
+                    documentFrontImageDiv.style.visibility = "hidden"
+                    documentBackImageDiv.style.visibility = "hidden"
+                    faceImageDiv.style.visibility = "hidden"
+
+                    if (blinkIdCombinedRecognizer.result.resultState == cordova.plugins.BlinkID.RecognizerResultState.valid) {
+                        var resultDocumentFrontImage = blinkIdCombinedRecognizer.result.fullDocumentFrontImage;
+                        if (resultDocumentFrontImage) {
+                            documentFrontImage.src = "data:image/jpg;base64, " + resultDocumentFrontImage;
+                            documentFrontImageDiv.style.visibility = "visible";
+                        }
+                        var resultDocumentBackImage = blinkIdCombinedRecognizer.result.fullDocumentBackImage;
+                        if (resultDocumentBackImage) {
+                            documentBackImage.src = "data:image/jpg;base64, " + resultDocumentBackImage;
+                            documentBackImageDiv.style.visibility = "visible";
+                        }
+                        var resultFaceImage = blinkIdCombinedRecognizer.result.faceImage;
+                        if (resultFaceImage) {
+                            faceImage.src = "data:image/jpg;base64, " + resultFaceImage;
+                            faceImageDiv.style.visibility = "visible";
+                        }
+
+                        var fieldDelim = "<br>";
+                        var blinkIdResult = blinkIdCombinedRecognizer.result;
+
+                        var resultString =
+                            "First name: " + blinkIdResult.firstName + fieldDelim +
+                            "Last name: " + blinkIdResult.lastName + fieldDelim +
+                            "Address: " + blinkIdResult.address + fieldDelim +
+                            "Document number: " + blinkIdResult.documentNumber + fieldDelim +
+                            "Sex: " + blinkIdResult.sex + fieldDelim;
+                        if (blinkIdResult.dateOfBirth) {
+                            resultString +=
+                                "Date of birth: " +
+                                    blinkIdResult.dateOfBirth.day + "." +
+                                    blinkIdResult.dateOfBirth.month + "." +
+                                    blinkIdResult.dateOfBirth.year + "." + fieldDelim;
+                        }
+                        if (blinkIdResult.dateOfIssue) {
+                            resultString +=
+                                "Date of issue: " +
+                                    blinkIdResult.dateOfIssue.day + "." +
+                                    blinkIdResult.dateOfIssue.month + "." +
+                                    blinkIdResult.dateOfIssue.year + "." + fieldDelim;
+                        }
+                        if (blinkIdResult.dateOfExpiry) {
+                            resultString +=
+                                "Date of expiry: " +
+                                    blinkIdResult.dateOfExpiry.day + "." +
+                                    blinkIdResult.dateOfExpiry.month + "." +
+                                    blinkIdResult.dateOfExpiry.year + "." + fieldDelim;
+                        }
+                        // there are other fields to extract - check blinkIdScanner.js for full reference
+                        resultDiv.innerHTML = resultString;
+                    } else {
+                        resultDiv.innerHTML = "Result is empty!";
+                    }
+                },
+                
+                // Register the error callback
+                function errorHandler(err) {
+                    alert('Error: ' + err);
+                },
+
+                blinkidOverlaySettings, recognizerCollection, licenseKeys
+            );
+        });
+
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        console.log('Received Event: ' + id);
+    }
+};
+</script>
+      
+    </body>
+</html>
